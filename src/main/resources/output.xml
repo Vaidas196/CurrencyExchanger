@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<FxRates>
+    <FxRate>
+        <Tp>EU</Tp>
+        <Dt>2023-10-02</Dt>
+        <CcyAmt>
+            <Ccy>AUD</Ccy>
+            <Amt>0.0</Amt>
+        </CcyAmt>
+        <CcyAmt>
+            <Ccy>1.6472</Ccy>
+            <Amt>0.0</Amt>
+        </CcyAmt>
+    </FxRate>
+</FxRates>

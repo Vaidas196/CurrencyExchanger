@@ -13,4 +13,11 @@ class CcyAmt {
     @XStreamAlias("Amt")
     private double amt;
 
+    @Override
+    public String toString() {
+        return "CcyAmt{" +
+                "ccy='" + ccy + '\'' +
+                ", amt=" + amt +
+                '}';
+    }
 }

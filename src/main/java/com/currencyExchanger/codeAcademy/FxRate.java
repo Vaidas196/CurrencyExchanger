@@ -20,5 +20,12 @@ class FxRate {
     @XStreamImplicit
     private List<CcyAmt> ccyAmt = new ArrayList<>();
 
-
+    @Override
+    public String toString() {
+        return "FxRate{" +
+                "tp='" + tp + '\'' +
+                ", dt='" + dt + '\'' +
+                ", ccyAmt=" + ccyAmt +
+                '}';
+    }
 }

@@ -9,12 +9,21 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @XStreamAlias("FxRates")
+
 public class FxRates {
 
     @XStreamImplicit
     private List<FxRate> fxRateList = new ArrayList<>();
 
-//    @Override
+    public List<FxRate> getFxRateList() {
+        return fxRateList;
+    }
+
+    public void setFxRateList(List<FxRate> fxRateList) {
+        this.fxRateList = fxRateList;
+    }
+
+    //    @Override
 //    public String toString() {
 //        return fxRateList.stream()
 //                .forEach(fxRate -> fxRate.toString());

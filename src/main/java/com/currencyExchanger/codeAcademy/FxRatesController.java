@@ -19,8 +19,11 @@ import reactor.core.publisher.Flux;
 
 @RestController
 public class FxRatesController {
+
+
+    private List<FxRate> currencyPairList = new ArrayList<>();
     // "https://www.lb.lt/webservices/FxRates/FxRates.asmx?op=getCurrentFxRates";
-    List <FxRate> currencyPairList = new ArrayList<>();
+    //List <FxRate> currencyPairList = new ArrayList<>();
 
     /*@GetMapping("/fxrates")
    public FxRates getFxRates(FxRates fr) throws IOException {
@@ -67,7 +70,7 @@ public class FxRatesController {
 
 
     @GetMapping("/fxrates")
-    public FxRates getFxRates(FxRates fr) throws IOException {
+    public FxRates getFxRates() throws IOException {
         XStream xStream = new XStream();
         xStream.aliasField("FxRate", FxRates.class, "fxRateList");
         xStream.allowTypesByWildcard(new String[]{"com.currencyExchanger.**"});
@@ -76,9 +79,14 @@ public class FxRatesController {
         xStream.aliasField("FxRate", FxRates.class, "fxRateList");
         String xmlData = readCurrentFxRatesDataFromWebsite();
         FxRates fxRates = (FxRates) xStream.fromXML(xmlData);
-        //currencyPairList = fxRates.getFxRateList();
+
+        currencyPairList = fxRates.getFxRateList();
         xStream.aliasField("FxRate", FxRates.class, "fxRateList");
         return  fxRates;
     }
-
+    @GetMapping("/getfirst")
+    public FxRate getFirstFxRate() {
+        // Retrieve the first FxRate from the list
+        return currencyPairList.isEmpty() ? null : currencyPairList.get(0);
+    }
 }

@@ -4,6 +4,7 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import com.thoughtworks.xstream.annotations.XStreamInclude;
 import lombok.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -20,12 +21,4 @@ class FxRate {
     @XStreamImplicit
     private List<CcyAmt> ccyAmt = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return "FxRate{" +
-                "tp='" + tp + '\'' +
-                ", dt='" + dt + '\'' +
-                ", ccyAmt=" + ccyAmt +
-                '}';
-    }
 }

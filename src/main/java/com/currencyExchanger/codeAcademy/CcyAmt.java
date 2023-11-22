@@ -1,6 +1,9 @@
 package com.currencyExchanger.codeAcademy;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.*;
+
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -11,7 +14,7 @@ class CcyAmt {
     private String ccy;
 
     @XStreamAlias("Amt")
-    private double amt;
+    private BigDecimal amt;
 
     @Override
     public String toString() {

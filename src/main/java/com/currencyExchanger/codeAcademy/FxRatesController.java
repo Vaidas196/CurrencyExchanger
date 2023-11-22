@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException; // Import this class
 import java.io.StringReader;
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets; // Import this class
 import java.nio.file.Files; // Import this class
 import java.nio.file.Paths; // Import this class
@@ -89,4 +90,15 @@ public class FxRatesController {
         // Retrieve the first FxRate from the list
         return currencyPairList.isEmpty() ? null : currencyPairList.get(0);
     }
+
+    @GetMapping("/calculate")
+    public BigDecimal convert() {
+        FxRate currencyPair = currencyPairList.get(0);
+        BigDecimal sourceFxrate = currencyPairList.get(0).getCcyAmt().get(0).getAmt();
+        BigDecimal targetFxrate = currencyPairList.get(0).getCcyAmt().get(1).getAmt();
+        BigDecimal multiplier = new BigDecimal(6);
+        BigDecimal result = multiplier.multiply(sourceFxrate.multiply(targetFxrate));
+        return result;
+    }
+
 }

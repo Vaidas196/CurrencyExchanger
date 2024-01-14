@@ -1,14 +1,13 @@
-package com.currencyExchanger.codeAcademy;
+package com.currencyExchanger.codeAcademy.model;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.*;
-
 import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @XStreamAlias("CcyAmt")
-class CcyAmt {
+public class CcyAmt {
 
     @XStreamAlias("Ccy")
     private String ccy;

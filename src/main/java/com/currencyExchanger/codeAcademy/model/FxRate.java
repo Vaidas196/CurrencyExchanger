@@ -1,19 +1,17 @@
-package com.currencyExchanger.codeAcademy;
+package com.currencyExchanger.codeAcademy.model;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
-import com.thoughtworks.xstream.annotations.XStreamInclude;
 import lombok.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @XStreamAlias("FxRate")
-class FxRate {
+public class FxRate {
 
-    
+
     @XStreamAlias("Tp")
     private String tp;
     @XStreamAlias("Dt")

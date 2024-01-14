@@ -22,9 +22,8 @@ repositories {
 }
 
 dependencies {
-	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.15.2'
-	// https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream
 	implementation group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.20'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'

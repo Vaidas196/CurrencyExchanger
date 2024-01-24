@@ -1,14 +1,7 @@
 package com.currencyExchanger.codeAcademy;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.http.MediaType;
-import org.springframework.http.codec.xml.Jaxb2XmlDecoder;
-import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
-
-
 @SpringBootApplication
 public class CurrencyExchangerApplication {
 

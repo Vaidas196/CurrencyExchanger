@@ -8,7 +8,6 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @XStreamAlias("FxRates")
-
 public class FxRates {
 
     @XStreamImplicit
@@ -16,10 +15,6 @@ public class FxRates {
 
     public List<FxRate> getFxRateList() {
         return fxRateList;
-    }
-
-    public void setFxRateList(List<FxRate> fxRateList) {
-        this.fxRateList = fxRateList;
     }
 
 }

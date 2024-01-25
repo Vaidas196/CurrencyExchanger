@@ -11,15 +11,19 @@
   <title th:text="*{title}"></title>
 </head>
 <header th:fragment="header">
-  <div>
+  <div class="container">
     <label for="languageSelector"></label>
     <select id="languageSelector">
-      <option th:text="#{language.choose}">Choose language</option>
+      <option  th:text="#{language.choose}" value="" disabled selected hidden></option>
       <option value="LT" th:text="'Lietuvių'"></option>
       <option value="EN" th:text="'English'" ></option>
     </select>
   </div>
 </header>
+
+<footer th:fragment="footer" >
+  <div th:text="#{footer.main.text}"All rights reserverd 2024 @ Vaidas></div>
+</footer>
 
 
 

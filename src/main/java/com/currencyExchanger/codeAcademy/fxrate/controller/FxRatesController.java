@@ -1,11 +1,10 @@
-package com.currencyExchanger.codeAcademy.controller;
-import com.currencyExchanger.codeAcademy.model.CcyAmt;
+package com.currencyExchanger.codeAcademy.fxrate.controller;
+import com.currencyExchanger.codeAcademy.fxrate.model.CcyAmt;
 import com.thoughtworks.xstream.XStream;
-import com.currencyExchanger.codeAcademy.model.FxRates;
+import com.currencyExchanger.codeAcademy.fxrate.model.FxRates;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.reactive.function.client.WebClient;
-import com.currencyExchanger.codeAcademy.model.FxRate;
+import com.currencyExchanger.codeAcademy.fxrate.model.FxRate;
 import com.currencyExchanger.codeAcademy.HttpEndpoints;
 @Controller
 public class FxRatesController {

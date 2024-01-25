@@ -1,6 +1,6 @@
-package com.currencyExchanger.codeAcademy.service;
-import com.currencyExchanger.codeAcademy.model.FxRate;
-import com.currencyExchanger.codeAcademy.model.FxRates;
+package com.currencyExchanger.codeAcademy.fxrate.service;
+import com.currencyExchanger.codeAcademy.fxrate.model.FxRate;
+import com.currencyExchanger.codeAcademy.fxrate.model.FxRates;
 import com.thoughtworks.xstream.XStream;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;

@@ -1,4 +1,4 @@
-package com.currencyExchanger.codeAcademy.model;
+package com.currencyExchanger.codeAcademy.fxrate.model;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import lombok.*;

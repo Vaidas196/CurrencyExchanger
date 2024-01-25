@@ -1,8 +1,6 @@
 package com.currencyExchanger.codeAcademy.fxrate.model;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
 
@@ -13,15 +11,28 @@ import java.math.BigDecimal;
 @Entity
 @XStreamAlias("CcyAmt")
 public class CcyAmt {
+    @Id
+    @SequenceGenerator(
+            name = "ccy_amt_sequence",
+            sequenceName = "ccy_amt_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "ccy_amt_sequence"
+    )
+    private Long id;
 
     @XStreamAlias("Ccy")
     private String ccy;
 
     @XStreamAlias("Amt")
     private BigDecimal amt;
-    @Id
-    @GeneratedValue
-    private Long id;
+
+    public CcyAmt(String ccy, BigDecimal amt) {
+        this.ccy = ccy;
+        this.amt=amt;
+    }
 
     @Override
     public String toString() {

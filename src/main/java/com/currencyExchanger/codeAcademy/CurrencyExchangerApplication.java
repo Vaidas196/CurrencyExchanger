@@ -18,7 +18,8 @@ public class CurrencyExchangerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CurrencyExchangerApplication.class, args);
 
-/*
+
+
 		String url ="https://www.lb.lt/webservices/FxRates/FxRates.asmx/getCurrentFxRates?tp=eu";
 
 		// prints current FX_Rates
@@ -34,7 +35,7 @@ public class CurrencyExchangerApplication {
 		System.out.println(fxRates);
 		System.out.println("------------");
 
- */
+
 	}
 	@Bean
 	CommandLineRunner commandLineRunner(FxRateRepository fxRaterepository, CcyAmtRepository ccyAmtRepository){

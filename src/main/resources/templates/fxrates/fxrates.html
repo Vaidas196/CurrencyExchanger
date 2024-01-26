@@ -3,43 +3,53 @@
 <head th:replace="~{fragments/layout :: head(#{converter.title})}"></head>
 <header th:replace="~{fragments/layout :: header}"> </header>
 <body>
-    <div class="container">
-    </div>
-    <div class="container">
+
+    <div class="container" style="background: antiquewhite; padding-top: 20px" >
         <div class="row">
             <div class="col">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" th:placeholder="#{amount.to.convert}">
-                    <label for="floatingInput" th:text="#{amount.to.convert}">Amount</label>
+                <div class="form-group">
+                    <label for="amountInput" th:text="#{amount.to.convert}">Amount</label>
+                    <input type="text" class="form-control" id="amountInput" th:placeholder="#{amount.to.convert}">
                 </div>
             </div>
             <div class="col">
-                <div class="form-floating">
-                    <select class="form-select" id="exchangeFrom" aria-label="Floating label select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                <div class="form-group">
+                    <label for="exchangeFrom" th:text="#{exchange.from}">Exchange from </label>
+                    <select class="selectpicker" data-live-search="true" id="exchangeFrom" >
+                        <option selected>USD</option>
+                        <option value="1">GBP</option>
+                        <option value="2">EUR</option>
+                        <option value="3">CAD</option>
                     </select>
-                    <label for="exchangeFrom" th:text="#{exchange.from}">Exchange from</label>
                 </div>
             </div>
-            <div class="col-1 text-center">
-                <a th:href="@{#}"> <i class="fa fa-refresh fa-3x" aria-hidden="true"> </i> </a>
+            <div class="col text-center">
+               <div class="form-group">
+                   <label for="swapButton" th:text="#{swap.button}">Swap sides </label><br>
+                    <a th:href="@{#}"> <i class="fa fa-refresh fa-2x" aria-hidden="true" id="swapButton"> </i> </a>
+               </div>
             </div>
             <div class="col">
-                <div class="form-floating">
-                    <select class="form-select" id="exchangeTo" aria-label="Floating label select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                <div class="form-group">
+                    <label for="exchangeTo" th:text="#{exchange.to}">Exchange to </label>
+                    <select class="selectpicker" data-live-search="true" id="exchangeTo" >
+                        <option selected>USD</option>
+                        <option value="1">GBP</option>
+                        <option value="2">EUR</option>
+                        <option value="3">CAD</option>
                     </select>
-                    <label for="exchangeTo" th:text="#{exchange.to}">Exchange to</label>
                 </div>
+            </div>
             </div>
         </div>
     </div>
+
+    <div class="container" style="background: antiquewhite; padding-top: 20px; padding-bottom: 30px">
+        <div class="col">
+            <button type="button" class="btn btn-primary" id="convertButton" th:text="#{convert.button}">Convert</button>
+        </div>
+    </div>
+
 
 </body>
 <div class="container text-center">

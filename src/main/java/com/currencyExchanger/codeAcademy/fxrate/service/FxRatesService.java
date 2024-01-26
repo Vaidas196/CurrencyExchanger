@@ -5,10 +5,16 @@ import com.thoughtworks.xstream.XStream;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class FxRatesService {
+    private List<FxRate> currencyPairList = new ArrayList<>();
+
+    public FxRatesService() throws IOException {
+//        this.currencyPairList = currencyPairList.stream().map()
+    }
 
     public String readCurrentFxRatesDataFromWebsite(){
         final String currencyXmlData ="https://www.lb.lt/webservices/FxRates/FxRates.asmx/getCurrentFxRates?tp=eu";
@@ -28,7 +34,7 @@ public class FxRatesService {
     }
 
 
-    public FxRates mapFxRatesAsObjectsToList(List<FxRate> currencyPairList) throws IOException {
+    public FxRates mapFxRatesAsObjectsToList() throws IOException {
         XStream xStream = new XStream();
         xStream.aliasField("FxRate", FxRates.class, "fxRateList");
         xStream.allowTypesByWildcard(new String[]{"com.currencyExchanger.**"});
@@ -37,7 +43,6 @@ public class FxRatesService {
         xStream.aliasField("FxRate", FxRates.class, "fxRateList");
         String xmlData = readCurrentFxRatesDataFromWebsite();
         FxRates fxRates = (FxRates) xStream.fromXML(xmlData);
-        currencyPairList = fxRates.getFxRateList();
         xStream.aliasField("FxRate", FxRates.class, "fxRateList");
         return  fxRates;
     }

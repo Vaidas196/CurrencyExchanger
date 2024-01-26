@@ -44,7 +44,7 @@ public class FxRatesController {
     }
 
 
-    @GetMapping(HttpEndpoints.FX_RATES_CONVERTER)
+    @GetMapping()
     public FxRates getFxRates() throws IOException {
         XStream xStream = new XStream();
         xStream.aliasField("FxRate", FxRates.class, "fxRateList");
@@ -62,6 +62,11 @@ public class FxRatesController {
     public String converter(Model model) {
         //model.addAttribute("message", "Convert currency!");
         return "fxrates/fxrates";
+    }
+    @GetMapping("/administrate")
+    public String administration(Model model) {
+        //model.addAttribute("message", "Convert currency!");
+        return "fxrates/administrate";
     }
 
 

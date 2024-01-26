@@ -7,21 +7,32 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script type="text/javascript" src="/js/language.js"></script>
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+
   <link th:href="@{/css/style.css}" rel="stylesheet">
   <title th:text="*{title}"></title>
 </head>
 <header th:fragment="header">
-  <div class="container">
+  <div class="container" style="padding-bottom: 30px" >
     <label for="languageSelector"></label>
-    <select id="languageSelector">
+    <select id="languageSelector" class="btn btn-primary">
       <option  th:text="#{language.choose}" value="" disabled selected hidden></option>
       <option value="LT" th:text="'Lietuvių'"></option>
       <option value="EN" th:text="'English'" ></option>
     </select>
+    <div class="btn-group">
+      <a th:href="@{fxrates}" class="btn btn-primary" th:text="#{header.navbar.page.convert}">Convert</a>
+      <a th:href="@{administrate}" class="btn btn-primary" th:text="#{header.navbar.page.administrate}">Administrate</a>
+    </div>
   </div>
 </header>
 
-<footer th:fragment="footer" >
+<footer style="padding-top: 80px" th:fragment="footer"  >
   <div th:text="#{footer.main.text}"All rights reserverd 2024 @ Vaidas></div>
 </footer>
 

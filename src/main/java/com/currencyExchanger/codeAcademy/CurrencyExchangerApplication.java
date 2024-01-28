@@ -7,7 +7,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,24 +16,6 @@ public class CurrencyExchangerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CurrencyExchangerApplication.class, args);
-
-
-
-//		String url ="https://www.lb.lt/webservices/FxRates/FxRates.asmx/getCurrentFxRates?tp=eu";
-//
-//		// prints current FX_Rates
-//		WebClient.Builder builder = WebClient.builder();
-//		String fxRates = builder
-//				.build()
-//				.get()
-//				.uri(url)
-//				.retrieve()
-//				.bodyToMono(String.class)
-//				.block();
-//		System.out.println("------------");
-//		System.out.println(fxRates);
-//		System.out.println("------------");
-
 
 	}
 	@Bean

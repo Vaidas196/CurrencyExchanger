@@ -28,6 +28,12 @@ public class FxRate {
     private String tp;
     @XStreamAlias("Dt")
     private String dt;
+    @Transient
+    @XStreamImplicit
+    private List<CcyAmt> ccyAmt = new ArrayList<>();
+
+
+
 
 
     public FxRate(String tp, String dt) {

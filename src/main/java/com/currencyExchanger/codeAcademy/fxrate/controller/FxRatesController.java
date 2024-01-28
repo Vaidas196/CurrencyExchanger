@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -44,7 +45,7 @@ public class FxRatesController {
     }
 
 
-    @GetMapping()
+    @GetMapping("/getfxrates")
     public FxRates getFxRates() throws IOException {
         XStream xStream = new XStream();
         xStream.aliasField("FxRate", FxRates.class, "fxRateList");
@@ -70,16 +71,16 @@ public class FxRatesController {
     }
 
 
-    // needs redoing to parse data from db
-//    @GetMapping("/calculate")
-//    public BigDecimal convert() {
-//        FxRate currencyPair = currencyPairList.get(0);
-//        BigDecimal sourceFxrate = currencyPairList.get(0).getCcyAmt().get(0).getAmt();
-//        BigDecimal targetFxrate = currencyPairList.get(0).getCcyAmt().get(1).getAmt();
-//        BigDecimal multiplier = new BigDecimal(6);
-//        BigDecimal result = multiplier.multiply(sourceFxrate.multiply(targetFxrate));
-//        return result;
-//    }
+     //needs redoing to parse data from db
+    @GetMapping("/calculate")
+    public BigDecimal convert() {
+        FxRate currencyPair = currencyPairList.get(0);
+        BigDecimal sourceFxrate = currencyPairList.get(0).getCcyAmt().get(0).getAmt();
+        BigDecimal targetFxrate = currencyPairList.get(0).getCcyAmt().get(1).getAmt();
+        BigDecimal multiplier = new BigDecimal(6);
+        BigDecimal result = multiplier.multiply(sourceFxrate.multiply(targetFxrate));
+        return result;
+    }
 
     public void switchFxRateFieldSides(){}
 

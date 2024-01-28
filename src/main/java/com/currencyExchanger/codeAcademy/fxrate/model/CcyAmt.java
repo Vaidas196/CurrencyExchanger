@@ -1,5 +1,6 @@
 package com.currencyExchanger.codeAcademy.fxrate.model;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
@@ -28,6 +29,7 @@ public class CcyAmt {
 
     @XStreamAlias("Amt")
     private BigDecimal amt;
+
 
     public CcyAmt(String ccy, BigDecimal amt) {
         this.ccy = ccy;

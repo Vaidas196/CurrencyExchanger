@@ -20,20 +20,20 @@ public class CurrencyExchangerApplication {
 
 
 
-		String url ="https://www.lb.lt/webservices/FxRates/FxRates.asmx/getCurrentFxRates?tp=eu";
-
-		// prints current FX_Rates
-		WebClient.Builder builder = WebClient.builder();
-		String fxRates = builder
-				.build()
-				.get()
-				.uri(url)
-				.retrieve()
-				.bodyToMono(String.class)
-				.block();
-		System.out.println("------------");
-		System.out.println(fxRates);
-		System.out.println("------------");
+//		String url ="https://www.lb.lt/webservices/FxRates/FxRates.asmx/getCurrentFxRates?tp=eu";
+//
+//		// prints current FX_Rates
+//		WebClient.Builder builder = WebClient.builder();
+//		String fxRates = builder
+//				.build()
+//				.get()
+//				.uri(url)
+//				.retrieve()
+//				.bodyToMono(String.class)
+//				.block();
+//		System.out.println("------------");
+//		System.out.println(fxRates);
+//		System.out.println("------------");
 
 
 	}

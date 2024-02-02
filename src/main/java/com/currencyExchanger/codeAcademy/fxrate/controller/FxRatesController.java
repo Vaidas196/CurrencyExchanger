@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.io.IOException;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -21,7 +23,7 @@ public class FxRatesController {
     }
     @GetMapping("/fxrates")
     public String converter(Model model) {
-        //model.addAttribute("message", "Convert currency!");
+        model.addAttribute("currencies", fxRatesService.displayCurrencyList());
         return "fxrates/fxrates";
     }
     @GetMapping("/administrate")
@@ -29,4 +31,5 @@ public class FxRatesController {
         //model.addAttribute("message", "Convert currency!");
         return "fxrates/administrate";
     }
+
 }

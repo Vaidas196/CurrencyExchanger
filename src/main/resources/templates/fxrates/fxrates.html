@@ -16,10 +16,7 @@
                 <div class="form-group">
                     <label for="exchangeFrom" th:text="#{exchange.from}">Exchange from </label>
                     <select class="selectpicker" data-live-search="true" id="exchangeFrom" >
-                        <option selected>USD</option>
-                        <option value="1">GBP</option>
-                        <option value="2">EUR</option>
-                        <option value="3">CAD</option>
+                        <option th:each="currency : ${currencies}" th:value="${currency}" th:text="${currency}"></option>
                     </select>
                 </div>
             </div>
@@ -33,10 +30,7 @@
                 <div class="form-group">
                     <label for="exchangeTo" th:text="#{exchange.to}">Exchange to </label>
                     <select class="selectpicker" data-live-search="true" id="exchangeTo" >
-                        <option selected>USD</option>
-                        <option value="1">GBP</option>
-                        <option value="2">EUR</option>
-                        <option value="3">CAD</option>
+                        <option th:each="currency : ${currencies}" th:value="${currency}" th:text="${currency}"></option>
                     </select>
                 </div>
             </div>

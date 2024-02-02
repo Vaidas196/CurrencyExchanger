@@ -21,13 +21,13 @@ public class CurrencyExchangerApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(FxRateRepository fxRaterepository, CcyAmtRepository ccyAmtRepository){
 		return args ->{
-			fxRaterepository.saveAll(
-					List.of(
-							new FxRate("LT", "2024-01-25")
-
-					)
-
-			);
+//			fxRaterepository.saveAll(
+//					List.of(
+//							new FxRate("LT", "2024-01-25")
+//
+//					)
+//
+//			);
 			ccyAmtRepository.saveAll(
 					List.of(
 							new CcyAmt("EUR",new BigDecimal("1")),

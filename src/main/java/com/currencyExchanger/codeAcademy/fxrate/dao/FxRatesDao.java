@@ -1,12 +1,11 @@
 package com.currencyExchanger.codeAcademy.fxrate.dao;
-
 import com.currencyExchanger.codeAcademy.fxrate.dto.FxRatesDTO;
-import com.currencyExchanger.codeAcademy.fxrate.model.FxRate;
-import com.currencyExchanger.codeAcademy.fxrate.model.FxRates;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.UUID;
-
+import java.math.BigDecimal;
+@Repository
+@Primary
 public class FxRatesDao {
 
     FxRatesDTORepository fxRatesDTORepository;
@@ -14,23 +13,4 @@ public class FxRatesDao {
         fxRatesDTORepository.save(fxRates);
     }
 
-
-    public void update(FxRate fxRate) {
-
-    }
-
-
-    public List<FxRate> getAll() {
-        return null;
-    }
-
-
-    public FxRate getFxRateByUUID(UUID id) {
-        return null;
-    }
-
-
-    public void deleteProductByUUID(UUID id) {
-
-    }
 }

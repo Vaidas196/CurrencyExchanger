@@ -5,43 +5,64 @@
 <body>
 
     <div class="container" style="background: antiquewhite; padding-top: 20px" >
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <label for="amountInput" th:text="#{amount.to.convert}">Amount</label>
-                    <input type="text" class="form-control" id="amountInput" th:placeholder="#{amount.to.convert}">
+        <form th:action="@{/fxrates/convert}" th:object="${CcyAmt}" method="post">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="amountInput" th:text="#{amount.to.convert}">Amount</label>
+                        <input type="text" class="form-control" id="amountInput" th:placeholder="#{amount.to.convert}">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="exchangeFrom" th:text="#{exchange.from}">Exchange from </label>
+                        <select class="selectpicker" data-live-search="true" id="exchangeFrom" >
+                            <option th:each="currency : ${currencies}" th:value="${currency}" th:text="${currency}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col text-center">
+                   <div class="form-group">
+                       <label for="swapButton" th:text="#{swap.button}">Swap sides </label><br>
+                        <a th:href="@{#}"> <i class="fa fa-refresh fa-2x" aria-hidden="true" id="swapButton"> </i> </a>
+                   </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="exchangeTo" th:text="#{exchange.to}">Exchange to </label>
+                        <select class="selectpicker" data-live-search="true" id="exchangeTo" >
+                            <option th:each="currency : ${currencies}" th:value="${currency}" th:text="${currency}"></option>
+                        </select>
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="form-group">
-                    <label for="exchangeFrom" th:text="#{exchange.from}">Exchange from </label>
-                    <select class="selectpicker" data-live-search="true" id="exchangeFrom" >
-                        <option th:each="currency : ${currencies}" th:value="${currency}" th:text="${currency}"></option>
-                    </select>
+            <div class="container" style="background: antiquewhite; padding-top: 20px; padding-bottom: 30px">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary" id="convertButton" th:text="#{convert.button}">Convert</button>
                 </div>
             </div>
-            <div class="col text-center">
-               <div class="form-group">
-                   <label for="swapButton" th:text="#{swap.button}">Swap sides </label><br>
-                    <a th:href="@{#}"> <i class="fa fa-refresh fa-2x" aria-hidden="true" id="swapButton"> </i> </a>
-               </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label for="exchangeTo" th:text="#{exchange.to}">Exchange to </label>
-                    <select class="selectpicker" data-live-search="true" id="exchangeTo" >
-                        <option th:each="currency : ${currencies}" th:value="${currency}" th:text="${currency}"></option>
-                    </select>
-                </div>
-            </div>
-            </div>
-        </div>
+        </form>
     </div>
 
-    <div class="container" style="background: antiquewhite; padding-top: 20px; padding-bottom: 30px">
-        <div class="col">
-            <button type="button" class="btn btn-primary" id="convertButton" th:text="#{convert.button}">Convert</button>
-        </div>
+
+
+<div class="container" style="background: antiquewhite; padding-top: 20px" >
+    <p>
+        1.00 USD =
+    </p>
+    <p>
+        0.91 EUR
+    </p>
+</div>
+    <div class="container" style="background: antiquewhite;">
+        <p>
+            1 USD = 0.91 EUR
+        </p>
+    </div>
+    <div class="container" style="background: antiquewhite;">
+        <p>
+            1 Eur = 1.08 USD
+        </p>
     </div>
 
 

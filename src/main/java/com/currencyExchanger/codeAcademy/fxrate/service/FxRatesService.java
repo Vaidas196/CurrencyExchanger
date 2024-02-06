@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class FxRatesService {
     public BigDecimal convert() {
 
 
-
+        System.out.println("am alive!");
 
         FxRate currencyPair = currencyPairList.get(0);
         BigDecimal sourceFxrate = currencyPairList.get(0).getCcyAmt().get(0).getAmt();
@@ -92,6 +93,12 @@ public class FxRatesService {
                     );
         }
 
+    }
+    public BigDecimal convertCurrency(BigDecimal AmountToConvert, String ccyFrom, String ccyTo){
+        BigDecimal convertFrom = fxRatesDTORepository.findByCcyTo(ccyFrom).getAmtTo();
+        BigDecimal convertTo = fxRatesDTORepository.findByCcyTo(ccyTo).getAmtTo();
+        BigDecimal amountInEur = AmountToConvert.divide(convertFrom,8, RoundingMode.HALF_UP);
+        return amountInEur.multiply(convertTo);
     }
 
 }

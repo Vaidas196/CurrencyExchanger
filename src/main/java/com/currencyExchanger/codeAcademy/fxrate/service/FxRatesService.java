@@ -41,7 +41,7 @@ public class FxRatesService {
     }
 
 
-    public FxRates getFxRates() throws IOException {
+    public void getFxRates() throws IOException {
         XStream xStream = new XStream();
         xStream.aliasField("FxRate", FxRates.class, "fxRateList");
         xStream.allowTypesByWildcard(new String[]{"com.currencyExchanger.**"});
@@ -53,7 +53,7 @@ public class FxRatesService {
         currencyPairList = fxRates.getFxRateList();
         System.out.println(currencyPairList.get(0));
         saveFxRates();
-        return  fxRates;
+
     }
 
     public BigDecimal convert() {

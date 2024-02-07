@@ -6,8 +6,10 @@
 <div class="container">
 </div>
 <div class="container" style="background: antiquewhite; padding-top: 20px" >
-  <a href="#" class="btn btn-primary" th:text="#{administrate.page.load.data}">Load</a>
-  <div th:text="#{administrate.page.load.data.text}">Load data from Lietuvos Bankas API</div>
+  <form th:action="@{/getfxrates}"  method="get">
+    <button type="submit" class="btn btn-primary" id="convertButton" th:text="#{administrate.page.load.data}">Load</button>
+    <div th:text="#{administrate.page.load.data.text}">Load data from Lietuvos Bankas API</div>
+  </form>
 </div>
 
 </body>

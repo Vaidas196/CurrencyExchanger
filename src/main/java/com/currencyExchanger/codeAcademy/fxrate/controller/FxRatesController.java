@@ -16,10 +16,16 @@ public class FxRatesController {
 
     private final FxRatesService fxRatesService;
 
-    @ResponseBody
+//    @ResponseBody
+//    @GetMapping("/getfxrates")
+//    public FxRates getFxRates() throws IOException {
+//        return fxRatesService.getFxRates();
+//    }
+
     @GetMapping("/getfxrates")
-    public FxRates getFxRates() throws IOException {
-        return fxRatesService.getFxRates();
+    public String getFxRates() throws IOException {
+        fxRatesService.getFxRates();
+        return "fxrates/administrate";
     }
 
     @GetMapping("/fxrates")

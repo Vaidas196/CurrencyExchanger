@@ -1,7 +1,6 @@
 package com.currencyExchanger.codeAcademy.fxrate.controller;
 import com.currencyExchanger.codeAcademy.fxrate.model.ConvertedPair;
 import com.currencyExchanger.codeAcademy.fxrate.service.FxRatesService;
-import com.currencyExchanger.codeAcademy.fxrate.model.FxRates;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,15 +38,22 @@ public class FxRatesController {
         return "fxrates/administrate";
     }
 
-    @ResponseBody
+
     @GetMapping("/convert")
-    public BigDecimal convert( @ModelAttribute ConvertedPair convertedPair,Model model,
+    public String convert( @ModelAttribute ConvertedPair convertedPair,Model model,
             @RequestParam("Amount")BigDecimal amount,
             @RequestParam("From") String fromCurrency,
             @RequestParam("To") String toCurrency
+
             ){
-        model.addAttribute("convertedPair",convertedPair);
-        return fxRatesService.convertCurrency(amount, fromCurrency, toCurrency);
+        BigDecimal result = fxRatesService.convertCurrency(amount, fromCurrency, toCurrency);
+        model.addAttribute("amountInput", amount);
+        model.addAttribute("currency", fromCurrency);
+        model.addAttribute("currency", toCurrency);
+        model.addAttribute("result",result);
+        model.addAttribute("currencies", fxRatesService.displayCurrencyList());
+
+        return "fxrates/fxrates";
     }
    @ResponseBody
     @GetMapping ("/testConverter")

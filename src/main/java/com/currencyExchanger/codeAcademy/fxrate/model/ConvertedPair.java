@@ -14,4 +14,5 @@ public class ConvertedPair {
     private BigDecimal amount;
     private String fromCurrency;
     private String toCurrency;
+    private BigDecimal result;
 }

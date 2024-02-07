@@ -5,18 +5,18 @@
 <body>
 
     <div class="container" style="background: antiquewhite; padding-top: 20px" >
-        <form th:action="@{/convert}"  method="get" >
+        <form th:action="@{/convert}"  method="get" th:object="${convertedPair}" >
             <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label for="amountInput" th:text="#{amount.to.convert}">Amount</label>
-                        <input type="text" class="form-control" id="amountInput" name="Amount" th:placeholder="#{amount.to.convert}">
+                        <input type="text" class="form-control" id="amountInput" name="Amount" th:value="${amountInput}" th:placeholder="#{amount.to.convert}">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="exchangeFrom" th:text="#{exchange.from}">Exchange from </label>
-                        <select class="selectpicker" data-live-search="true" id="exchangeFrom" name="From" >
+                        <select class="selectpicker" data-live-search="true" id="exchangeFrom" name="From">
                             <option th:each="currency : ${currencies}" th:value="${currency}" th:text="${currency}"></option>
                         </select>
                     </div>
@@ -30,7 +30,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="exchangeTo" th:text="#{exchange.to}">Exchange to </label>
-                        <select class="selectpicker" data-live-search="true" id="exchangeTo" name="To">
+                        <select class="selectpicker" data-live-search="true" id="exchangeTo" name="To" >
                             <option th:each="currency : ${currencies}" th:value="${currency}" th:text="${currency}"></option>
                         </select>
                     </div>
@@ -47,24 +47,8 @@
 
 
 <div class="container" style="background: antiquewhite; padding-top: 20px" >
-    <p>
-        1.00 USD =
-    </p>
-    <p>
-        0.91 EUR
-    </p>
+    <H1 th:text="${result}"></H1>
 </div>
-    <div class="container" style="background: antiquewhite;">
-        <p>
-            1 USD = 0.91 EUR
-        </p>
-    </div>
-    <div class="container" style="background: antiquewhite;">
-        <p>
-            1 Eur = 1.08 USD
-        </p>
-    </div>
-
 
 </body>
 <div class="container text-center">

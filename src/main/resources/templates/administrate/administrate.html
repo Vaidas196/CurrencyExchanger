@@ -6,7 +6,7 @@
 <div class="container">
 </div>
 <div class="container" style="background: antiquewhite; padding-top: 20px" >
-  <form th:action="@{/getfxrates}"  method="get">
+  <form th:action="@{/administrate/getfxrates}"  method="post">
     <button type="submit" class="btn btn-primary" id="convertButton" th:text="#{administrate.page.load.data}">Load</button>
     <div th:text="#{administrate.page.load.data.text}">Load data from Lietuvos Bankas API</div>
   </form>

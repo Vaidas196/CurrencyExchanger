@@ -15,12 +15,6 @@ public class FxRatesController {
 
     private final FxRatesService fxRatesService;
 
-    @GetMapping("/getfxrates")
-    public String getFxRates() throws IOException {
-        fxRatesService.getFxRates();
-        return "fxrates/administrate";
-    }
-
     @GetMapping("/fxrates")
     public String fxRates(Model model) {
         model.addAttribute("currencies", fxRatesService.displayCurrencyList());
@@ -31,12 +25,6 @@ public class FxRatesController {
 
         return "fxrates/fxrates";
     }
-
-    @GetMapping("/administrate")
-    public String administration() {
-        return "fxrates/administrate";
-    }
-
 
     @GetMapping("/convert")
     public String convert( @ModelAttribute ConvertedPair convertedPair,Model model,

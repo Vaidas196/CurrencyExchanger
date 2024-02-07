@@ -55,21 +55,6 @@ public class FxRatesService {
         saveFxRates();
 
     }
-
-    public BigDecimal convert() {
-
-
-        System.out.println("am alive!");
-
-        FxRate currencyPair = currencyPairList.get(0);
-        BigDecimal sourceFxrate = currencyPairList.get(0).getCcyAmt().get(0).getAmt();
-        BigDecimal targetFxrate = currencyPairList.get(0).getCcyAmt().get(1).getAmt();
-        BigDecimal multiplier = new BigDecimal(6);
-        BigDecimal result = multiplier.multiply(sourceFxrate.multiply(targetFxrate));
-        return result;
-    }
-
-
     public void saveFxRates(){
 
         //build and save euro to euro field
@@ -97,9 +82,12 @@ public class FxRatesService {
 
     }
     public BigDecimal convertCurrency(BigDecimal AmountToConvert, String ccyFrom, String ccyTo){
+        if (ccyFrom.equals(ccyTo)){
+            return AmountToConvert;
+        }
         BigDecimal convertFrom = fxRatesDTORepository.findByCcyTo(ccyFrom).getAmtTo();
         BigDecimal convertTo = fxRatesDTORepository.findByCcyTo(ccyTo).getAmtTo();
-        BigDecimal amountInEur = AmountToConvert.divide(convertFrom,2, RoundingMode.HALF_UP);
+        BigDecimal amountInEur = AmountToConvert.divide(convertFrom,8, RoundingMode.HALF_UP);
         return amountInEur.multiply(convertTo);
     }
 

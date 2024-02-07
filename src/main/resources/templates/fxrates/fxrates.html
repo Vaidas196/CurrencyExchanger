@@ -46,8 +46,14 @@
 
 
 
-<div class="container" style="background: antiquewhite; padding-top: 20px" >
-    <H1 th:text="${result}"></H1>
+<div class="container d-flex flex-column bd-highlight mb-3" style="background: antiquewhite"  >
+        <div class="p-2 bd-highlight">
+            <h5 th:text="${amountInput} + ' ' + ${selectedFromCurrency} +' = '"  ></h5>
+        </div>
+        <div class="p-2 bd-highlight">
+            <h3 th:text="${result}+ ' ' +${selectedToCurrency}"></h3>
+        </div>
+
 </div>
 
 </body>

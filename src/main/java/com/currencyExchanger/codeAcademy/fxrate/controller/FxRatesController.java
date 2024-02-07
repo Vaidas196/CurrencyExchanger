@@ -24,6 +24,11 @@ public class FxRatesController {
     @GetMapping("/fxrates")
     public String fxRates(Model model) {
         model.addAttribute("currencies", fxRatesService.displayCurrencyList());
+        model.addAttribute("selectedFromCurrency", "EUR");
+        model.addAttribute("selectedToCurrency", "EUR");
+        model.addAttribute("amountInput",1);
+        model.addAttribute("result", 1);
+
         return "fxrates/fxrates";
     }
 
@@ -38,7 +43,6 @@ public class FxRatesController {
             @RequestParam("Amount")BigDecimal amount,
             @RequestParam("From") String fromCurrency,
             @RequestParam("To") String toCurrency
-
             ){
         model.addAttribute("currencies", fxRatesService.displayCurrencyList());
         BigDecimal result = fxRatesService.convertCurrency(amount, fromCurrency, toCurrency);
@@ -46,8 +50,6 @@ public class FxRatesController {
         model.addAttribute("selectedFromCurrency", fromCurrency);
         model.addAttribute("selectedToCurrency", toCurrency);
         model.addAttribute("result",result);
-
-
         return "fxrates/fxrates";
     }
 

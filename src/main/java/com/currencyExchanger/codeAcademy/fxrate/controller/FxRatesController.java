@@ -15,12 +15,6 @@ public class FxRatesController {
 
     private final FxRatesService fxRatesService;
 
-//    @ResponseBody
-//    @GetMapping("/getfxrates")
-//    public FxRates getFxRates() throws IOException {
-//        return fxRatesService.getFxRates();
-//    }
-
     @GetMapping("/getfxrates")
     public String getFxRates() throws IOException {
         fxRatesService.getFxRates();
@@ -46,20 +40,15 @@ public class FxRatesController {
             @RequestParam("To") String toCurrency
 
             ){
+        model.addAttribute("currencies", fxRatesService.displayCurrencyList());
         BigDecimal result = fxRatesService.convertCurrency(amount, fromCurrency, toCurrency);
         model.addAttribute("amountInput", amount);
-        model.addAttribute("currency", fromCurrency);
-        model.addAttribute("currency", toCurrency);
+        model.addAttribute("selectedFromCurrency", fromCurrency);
+        model.addAttribute("selectedToCurrency", toCurrency);
         model.addAttribute("result",result);
-        model.addAttribute("currencies", fxRatesService.displayCurrencyList());
+
 
         return "fxrates/fxrates";
     }
-   @ResponseBody
-    @GetMapping ("/testConverter")
-    public BigDecimal test() {
-        return fxRatesService.convertCurrency(new BigDecimal(62), "GBP", "PLN");
-    }
-
 
 }

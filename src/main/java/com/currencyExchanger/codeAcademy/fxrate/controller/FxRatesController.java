@@ -1,14 +1,13 @@
 package com.currencyExchanger.codeAcademy.fxrate.controller;
+import com.currencyExchanger.codeAcademy.fxrate.model.ConvertedPair;
 import com.currencyExchanger.codeAcademy.fxrate.service.FxRatesService;
 import com.currencyExchanger.codeAcademy.fxrate.model.FxRates;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,18 +33,20 @@ public class FxRatesController {
         return "fxrates/administrate";
     }
 
-//    @GetMapping("/convert")
-//    public String convert(
-//            @RequestParam("Amount")BigDecimal amount,
-//            @RequestParam("From") String fromCurrency,
-//            @RequestParam("To") String toCurrency
-//            ){
-//        fxRatesService.
-//    }
+    @ResponseBody
+    @GetMapping("/convert")
+    public BigDecimal convert( @ModelAttribute ConvertedPair convertedPair,Model model,
+            @RequestParam("Amount")BigDecimal amount,
+            @RequestParam("From") String fromCurrency,
+            @RequestParam("To") String toCurrency
+            ){
+        model.addAttribute("convertedPair",convertedPair);
+        return fxRatesService.convertCurrency(amount, fromCurrency, toCurrency);
+    }
    @ResponseBody
-    @GetMapping ("/test")
+    @GetMapping ("/testConverter")
     public BigDecimal test() {
-        return fxRatesService.convertCurrency(new BigDecimal(1), "GBP", "PLN");
+        return fxRatesService.convertCurrency(new BigDecimal(62), "GBP", "PLN");
     }
 
 

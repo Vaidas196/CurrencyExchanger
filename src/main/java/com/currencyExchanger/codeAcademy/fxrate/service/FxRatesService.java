@@ -3,6 +3,7 @@ import com.currencyExchanger.codeAcademy.Currencies;
 import com.currencyExchanger.codeAcademy.fxrate.dao.FxRateDao;
 import com.currencyExchanger.codeAcademy.fxrate.dao.FxRatesDTORepository;
 import com.currencyExchanger.codeAcademy.fxrate.dto.FxRatesDTO;
+import com.currencyExchanger.codeAcademy.fxrate.model.ConvertedPair;
 import com.currencyExchanger.codeAcademy.fxrate.model.FxRate;
 import com.currencyExchanger.codeAcademy.fxrate.model.FxRates;
 import com.thoughtworks.xstream.XStream;
@@ -23,6 +24,7 @@ public class FxRatesService {
     private List<FxRate> currencyPairList = new ArrayList<>();
     final String currencyXmlData ="https://www.lb.lt/webservices/FxRates/FxRates.asmx/getCurrentFxRates?tp=eu";
     final FxRatesDTORepository fxRatesDTORepository;
+    public ConvertedPair convertedPair;
     public List<String> displayCurrencyList(){
         return Currencies.currencies;
     }
@@ -97,7 +99,7 @@ public class FxRatesService {
     public BigDecimal convertCurrency(BigDecimal AmountToConvert, String ccyFrom, String ccyTo){
         BigDecimal convertFrom = fxRatesDTORepository.findByCcyTo(ccyFrom).getAmtTo();
         BigDecimal convertTo = fxRatesDTORepository.findByCcyTo(ccyTo).getAmtTo();
-        BigDecimal amountInEur = AmountToConvert.divide(convertFrom,8, RoundingMode.HALF_UP);
+        BigDecimal amountInEur = AmountToConvert.divide(convertFrom,2, RoundingMode.HALF_UP);
         return amountInEur.multiply(convertTo);
     }
 

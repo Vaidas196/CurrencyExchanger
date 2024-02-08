@@ -1,12 +1,10 @@
 package com.currencyExchanger.codeAcademy.administrate.controller;
 
 import com.currencyExchanger.codeAcademy.administrate.service.AdministrateService;
-import com.currencyExchanger.codeAcademy.fxrate.service.FxRatesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import java.io.IOException;
 
 @Controller

@@ -31,8 +31,20 @@ public class FxRatesService {
         if (ccyFrom.equals(ccyTo)){
             return AmountToConvert;
         }
-        BigDecimal convertFrom = fxRatesDTORepository.findByCcyTo(ccyFrom).getAmtTo();
-        BigDecimal convertTo = fxRatesDTORepository.findByCcyTo(ccyTo).getAmtTo();
+        List<FxRatesDTO> fromRates = fxRatesDTORepository.findByCcyToOrderByDtDesc(ccyFrom);
+        List<FxRatesDTO> toRates = fxRatesDTORepository.findByCcyToOrderByDtDesc(ccyTo);
+
+        // Get the latest entries
+        FxRatesDTO latestFromRate = fromRates.stream().findFirst().orElse(null);
+        FxRatesDTO latestToRate = toRates.stream().findFirst().orElse(null);
+
+        // Check if any rates are missing
+        if (latestFromRate == null || latestToRate == null) {
+            throw new RuntimeException("Missing currency rate data.");
+        }
+
+        BigDecimal convertFrom = latestFromRate.getAmtTo();
+        BigDecimal convertTo = latestToRate.getAmtTo();
         BigDecimal amountInEur = AmountToConvert.divide(convertFrom,8, RoundingMode.HALF_UP);
         return amountInEur.multiply(convertTo);
     }

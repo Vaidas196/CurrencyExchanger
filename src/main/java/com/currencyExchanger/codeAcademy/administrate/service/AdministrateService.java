@@ -6,6 +6,7 @@ import com.currencyExchanger.codeAcademy.fxrate.model.FxRate;
 import com.currencyExchanger.codeAcademy.fxrate.model.FxRates;
 import com.thoughtworks.xstream.XStream;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -46,27 +47,49 @@ public class AdministrateService {
     public void saveFxRates(){
 
         //build and save euro to euro field
-        fxRatesDTORepository.save(
-                FxRatesDTO.builder()
-                        .dt(currencyPairList.get(0).getDt())
-                        .ccyFrom("EUR")
-                        .amtFrom(new BigDecimal(1))
-                        .ccyTo("EUR")
-                        .amtTo(new BigDecimal(1))
-                        .build()
-        );
-        for (FxRate fxRate : currencyPairList) {
-            //FxRate(id=null,tp=EU,dt=2024-02-01,ccyAmt=[CcyAmt{ccy='EUR', amt=1}, CcyAmt{ccy='AUD', amt=1.6594}])
-            fxRatesDTORepository.save(
-                    FxRatesDTO.builder()
-                            .dt(fxRate.getDt())
-                            .ccyFrom(fxRate.getCcyAmt().get(0).getCcy())
-                            .amtFrom(fxRate.getCcyAmt().get(0).getAmt())
-                            .ccyTo(fxRate.getCcyAmt().get(1).getCcy())
-                            .amtTo(fxRate.getCcyAmt().get(1).getAmt())
-                            .build()
-            );
+        try {
+
+                    saveWithUniqueConstraint(
+                            FxRatesDTO.builder()
+                                    .dt(currencyPairList.get(0).getDt())
+                                    .ccyFrom("EUR")
+                                    .amtFrom(new BigDecimal(1))
+                                    .ccyTo("EUR")
+                                    .amtTo(new BigDecimal(1))
+                                    .build()
+                    );
+            for (FxRate fxRate : currencyPairList) {
+                //FxRate(id=null,tp=EU,dt=2024-02-01,ccyAmt=[CcyAmt{ccy='EUR', amt=1}, CcyAmt{ccy='AUD', amt=1.6594}])
+                saveWithUniqueConstraint(
+                        FxRatesDTO.builder()
+                                .dt(fxRate.getDt())
+                                .ccyFrom(fxRate.getCcyAmt().get(0).getCcy())
+                                .amtFrom(fxRate.getCcyAmt().get(0).getAmt())
+                                .ccyTo(fxRate.getCcyAmt().get(1).getCcy())
+                                .amtTo(fxRate.getCcyAmt().get(1).getAmt())
+                                .build()
+                );
+
+            }
+        } catch (DataIntegrityViolationException e){
+
+            throw new RuntimeException("Todays rates area already loaded!", e);
         }
 
+    }
+
+
+    private void saveWithUniqueConstraint(FxRatesDTO fxRatesDTO) {
+        try {
+            // Check if the same data already exists before saving
+            if (!fxRatesDTORepository.existsByDtAndCcyFromAndCcyTo(fxRatesDTO.getDt(),
+                    fxRatesDTO.getCcyFrom(), fxRatesDTO.getCcyTo())) {
+                fxRatesDTORepository.save(fxRatesDTO);
+            }
+        } catch (DataIntegrityViolationException e) {
+            // Handle unique constraint violation
+            // For example, you can log the error message and skip saving the duplicate data
+            System.err.println("Error: Data already exists. Skipping saving the duplicate data.");
+        }
     }
 }

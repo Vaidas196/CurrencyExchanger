@@ -49,4 +49,5 @@ public class FxRatesService {
         return amountInEur.multiply(convertTo);
     }
 
+
 }

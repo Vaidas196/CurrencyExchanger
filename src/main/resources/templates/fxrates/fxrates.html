@@ -10,7 +10,10 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="amountInput" th:text="#{amount.to.convert}">Amount</label>
-                        <input type="text" class="form-control" id="amountInput" name="Amount" th:value="${amountInput}" th:placeholder="#{amount.to.convert}">
+                        <input type="number" step="any" class="form-control" id="amountInput" name="Amount" th:value="${amountInput}" th:placeholder="#{amount.to.convert}" required>
+                        <div th:if="${invalidAmountErrorMessage}" class="alert alert-danger" role="alert">
+                            <small id="invalidAmountErrorMessage" th:text="#{invalid.amount.error.message}">Amount should be greater than 0</small>
+                        </div>
                     </div>
                 </div>
                 <div class="col">
@@ -46,9 +49,9 @@
 
 
 
-<div class="container d-flex flex-column bd-highlight mb-3" style="background: antiquewhite"  >
+<div class="container d-flex flex-column bd-highlight mb-3" style="background: antiquewhite">
         <div class="p-2 bd-highlight">
-            <h5 th:text="${amountInput} + ' ' + ${selectedFromCurrency} +' = '"  ></h5>
+            <h5  th:text="${amountInput} + ' ' + ${selectedFromCurrency} +' = '"  ></h5>
         </div>
         <div class="p-2 bd-highlight">
             <h3 th:text="${result}+ ' ' +${selectedToCurrency}"></h3>

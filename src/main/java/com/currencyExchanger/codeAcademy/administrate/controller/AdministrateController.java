@@ -8,10 +8,7 @@
     import org.springframework.ui.Model;
     import org.springframework.web.bind.annotation.GetMapping;
     import org.springframework.web.bind.annotation.PostMapping;
-    import org.springframework.data.domain.Page;
     import org.springframework.data.domain.Pageable;
-
-
     import java.io.IOException;
 
     @Controller
@@ -21,8 +18,6 @@
 
         @GetMapping("/administrate")
         public String administration() {
-    //    Page<FxRatesDTO> page = administrateService.getAllCurrencies(pageable);
-    //    model.addAttribute("fxRatesPage", page);
             return "administrate/administrate";
         }
         @GetMapping("/administrate/list")

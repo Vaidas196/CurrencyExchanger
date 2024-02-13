@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{fragments/layout :: head(#{converter.title})}"></head>
+<header th:replace="~{fragments/layout :: header}"> </header>
+<body style="background: slategray">
+
+<div class="container d-flex justify-content-center" style="background: antiquewhite; padding-top: 20px" >
+<div th:if="${fxRatesPage.isEmpty()}">No fx rates available</div>
+<div th:if="${not fxRatesPage.isEmpty()}">
+  <h2 th:text="#{converter.title}">Currency Exchange Rates</h2>
+  <table class="table table-striped table-hover ">
+    <thead>
+    <tr>
+      <th th:text="#{exchange.from}">Currency From</th>
+      <th th:text="#{exchange.to}">Currency To</th>
+      <th th:text="#{exchange.rate}">Exchange Rate</th>
+      <th th:text="#{exchange.rate.date}">Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="fxRate : ${fxRatesPage.content}">
+      <td th:text="${fxRate.ccyFrom}"></td>
+      <td th:text="${fxRate.ccyTo}"></td>
+      <td th:text="${fxRate.amtTo}"></td>
+      <td th:text="${fxRate.dt}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <ul class="pagination">
+    <li th:class="${fxRatesPage.first ? 'disabled' : ''}">
+      <a th:href="@{/administrate/list(page=0)}">&laquo;</a>
+    </li>
+    <li th:each="page : ${#numbers.sequence(0, fxRatesPage.totalPages - 1)}"
+        th:class="${page == fxRatesPage.number ? 'active' : ''}">
+      <a th:href="@{/administrate/list(page=${page})}" th:text="${page + 1}"></a>
+    </li>
+    <li th:class="${fxRatesPage.last ? 'disabled' : ''}">
+      <a th:href="@{/administrate/list(page=${fxRatesPage.totalPages - 1})}">&raquo;</a>
+    </li>
+  </ul>
+</div>
+</div>
+</body>
+<div class="container text-center">
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</div>
+</html>

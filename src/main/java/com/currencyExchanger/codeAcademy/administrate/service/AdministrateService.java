@@ -7,8 +7,11 @@ import com.currencyExchanger.codeAcademy.fxrate.model.FxRates;
 import com.thoughtworks.xstream.XStream;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -92,4 +95,7 @@ public class AdministrateService {
             System.err.println("Error: Data already exists. Skipping saving the duplicate data.");
         }
     }
+   public Page<FxRatesDTO> getAllCurrencies(Pageable pageable){
+        return fxRatesDTORepository.findAll(pageable);
+   }
 }

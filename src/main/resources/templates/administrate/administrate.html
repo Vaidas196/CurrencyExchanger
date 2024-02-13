@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="~{fragments/layout :: head(#{converter.title})}"></head>
-<header th:replace="~{fragments/layout :: header}"> </header>
-<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<body style="background: slategray">
 <div class="container">
 </div>
-<div class="container" style="background: antiquewhite; padding-top: 20px" >
-  <form th:action="@{/administrate/getfxrates}"  method="post">
-    <button type="submit" class="btn btn-primary" id="convertButton" th:text="#{administrate.page.load.data}">Load</button>
-    <div th:text="#{administrate.page.load.data.text}">Load data from Lietuvos Bankas API</div>
-  </form>
-</div>
+<div class="container" style="background: antiquewhite; padding-top: 20px">
 
+
+    <div class="d-flex flex-column bd-highlight mb-3">
+        <div class="p-2 bd-highlight">
+            <form th:action="@{/administrate/getfxrates}" method="post">
+                <div class="d-flex justify-content-start">
+                    <button type="submit" class="btn btn-info" id="convertButton"
+                            th:text="#{administrate.page.load.data.text}">Load
+                    </button>
+
+                </div>
+            </form>
+        </div>
+        <div class="p-2 bd-highlight">
+            <a class="btn btn-info" th:href="@{/administrate/list}" th:text="#{administrate.page.link.to.list}"></a>
+        </div>
+    </div>
+
+
+</div>
 </body>
 <div class="container text-center">
-  <footer th:replace="~{fragments/layout :: footer}"></footer>
+    <footer th:replace="~{fragments/layout :: footer}"></footer>
 </div>
 </html>

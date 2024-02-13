@@ -1,64 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="~{fragments/layout :: head(#{converter.title})}"></head>
-<header th:replace="~{fragments/layout :: header}"> </header>
-<body>
-
-    <div class="container" style="background: antiquewhite; padding-top: 20px" >
-        <form th:action="@{/convert}"  method="get" th:object="${convertedPair}" >
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="amountInput" th:text="#{amount.to.convert}">Amount</label>
-                        <input type="number" step="any" class="form-control" id="amountInput" name="Amount" th:value="${amountInput}" th:placeholder="#{amount.to.convert}" required>
-                        <div th:if="${invalidAmountErrorMessage}" class="alert alert-danger" role="alert">
-                            <small id="invalidAmountErrorMessage" th:text="#{invalid.amount.error.message}">Amount should be greater than 0</small>
-                        </div>
+<header th:replace="~{fragments/layout :: header}"></header>
+<body style="background: slategray">
+<div class="container align-items-start justify-content-evenly" style="background: antiquewhite; padding-top: 20px">
+    <form th:action="@{/convert}" method="get" th:object="${convertedPair}">
+        <div class="d-flex flex-row bd-highlight mb-3">
+            <div class="p-2 bd-highlight">
+                <div class="form-group">
+                    <label for="amountInput" th:text="#{amount.to.convert}">Amount</label>
+                    <input type="number" step="any" class="form-control" id="amountInput" name="Amount"
+                           th:value="${amountInput}" th:placeholder="#{amount.to.convert}" required>
+                    <div th:if="${invalidAmountErrorMessage}" class="alert alert-danger" role="alert">
+                        <small id="invalidAmountErrorMessage" th:text="#{invalid.amount.error.message}">Amount should be
+                            greater
+                            than 0</small>
                     </div>
                 </div>
-                <div class="col">
+
+                <div class="p-2 bd-highlight">
                     <div class="form-group">
                         <label for="exchangeFrom" th:text="#{exchange.from}">Exchange from </label>
                         <select class="selectpicker" data-live-search="true" id="exchangeFrom" name="From">
-                            <option th:each="fromCurrency : ${currencies}" th:value="${fromCurrency}" th:text="${fromCurrency}" th:selected="${fromCurrency == selectedFromCurrency}" ></option>
+                            <option th:each="fromCurrency : ${currencies}" th:value="${fromCurrency}"
+                                    th:text="${fromCurrency}"
+                                    th:selected="${fromCurrency == selectedFromCurrency}"></option>
                         </select>
                     </div>
                 </div>
-                <div class="col text-center">
-                   <div class="form-group">
-                       <label for="swapButton" th:text="#{swap.button}">Swap sides </label><br>
-                        <a th:href="@{#}"> <i class="fa fa-refresh fa-2x" aria-hidden="true" id="swapButton"> </i> </a>
-                   </div>
-                </div>
-                <div class="col">
+                <div class="p-2 bd-highlight">
                     <div class="form-group">
                         <label for="exchangeTo" th:text="#{exchange.to}">Exchange to </label>
-                        <select class="selectpicker" data-live-search="true" id="exchangeTo" name="To" >
-                            <option th:each="toCurrency : ${currencies}" th:value="${toCurrency}" th:text="${toCurrency}" th:selected="${toCurrency == selectedToCurrency}"></option>
+                        <select class="selectpicker" data-live-search="true" id="exchangeTo" name="To">
+                            <option th:each="toCurrency : ${currencies}" th:value="${toCurrency}"
+                                    th:text="${toCurrency}"
+                                    th:selected="${toCurrency == selectedToCurrency}"></option>
                         </select>
                     </div>
                 </div>
             </div>
-            <div class="container" style="background: antiquewhite; padding-top: 20px; padding-bottom: 30px">
-                <div class="col">
-                    <button type="submit" class="btn btn-primary" id="convertButton" th:text="#{convert.button}">Convert</button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-
-
-<div class="container d-flex flex-column bd-highlight mb-3" style="background: antiquewhite">
+        </div>
         <div class="p-2 bd-highlight">
-            <h5  th:text="${amountInput} + ' ' + ${selectedFromCurrency} +' = '"  ></h5>
+            <button type="submit" class="btn btn-primary" id="convertButton" th:text="#{convert.button}">Convert
+            </button>
+        </div>
+    </form>
+    <div class="d-flex flex-column bd-highlight mb-3" style="background: antiquewhite">
+        <div class="p-2 bd-highlight">
+            <h5 th:text="${amountInput} + ' ' + ${selectedFromCurrency} +' = '"></h5>
         </div>
         <div class="p-2 bd-highlight">
             <h3 th:text="${result}+ ' ' +${selectedToCurrency}"></h3>
         </div>
 
+    </div>
 </div>
-
 </body>
 <div class="container text-center">
     <footer th:replace="~{fragments/layout :: footer}"></footer>

@@ -15,6 +15,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 @Service
@@ -97,5 +99,22 @@ public class AdministrateService {
     }
    public Page<FxRatesDTO> getAllCurrencies(Pageable pageable){
         return fxRatesDTORepository.findAll(pageable);
+   }
+
+   public void saveCurrency(String currencyName, BigDecimal fxRate){
+             saveWithUniqueConstraint(FxRatesDTO.builder()
+                     .dt(todayDate())
+                     .ccyFrom("EUR")
+                     .amtFrom(new BigDecimal("1.00"))
+                     .ccyTo(currencyName)
+                     .amtTo(fxRate)
+                     .build()
+             );
+   }
+
+   public String todayDate(){
+       LocalDate today = LocalDate.now();
+       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+       return today.format(formatter);
    }
 }

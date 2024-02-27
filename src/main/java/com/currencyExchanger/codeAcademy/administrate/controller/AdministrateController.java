@@ -58,6 +58,7 @@
                                    @ModelAttribute ("fxRate") FxRatesDTO fxRatesDTO){
             FxRatesDTO existingFxRate = administrateService.getFxRateById(id);
             existingFxRate.setAmtTo(fxRatesDTO.getAmtTo());
+            existingFxRate.setDt(administrateService.todayDate());
             administrateService.updateFxRate(existingFxRate);
             return "redirect:/administrate/list";
         }

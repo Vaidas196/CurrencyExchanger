@@ -1,5 +1,6 @@
 package com.currencyExchanger.codeAcademy.fxrate.dto;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -23,6 +24,7 @@ public class FxRatesDTO {
     private String ccyFrom;
     private BigDecimal amtFrom;
     private String ccyTo;
+    @Column(precision = 20, scale = 10)
     private BigDecimal amtTo;
 
 }

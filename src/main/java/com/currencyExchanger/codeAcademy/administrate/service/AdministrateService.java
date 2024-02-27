@@ -117,4 +117,15 @@ public class AdministrateService {
        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
        return today.format(formatter);
    }
+
+   public void updateFxRate(FxRatesDTO fxRatesDTO){
+        fxRatesDTORepository.save(fxRatesDTO);
+   }
+   public FxRatesDTO getFxRateById(long id){
+        return fxRatesDTORepository.findById(id);
+   }
+   public void deleteFxRateById(long id){
+        fxRatesDTORepository.deleteById(id);
+   }
+
 }

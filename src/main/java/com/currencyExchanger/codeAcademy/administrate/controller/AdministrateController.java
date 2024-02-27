@@ -7,11 +7,8 @@
     import org.springframework.data.domain.Page;
     import org.springframework.stereotype.Controller;
     import org.springframework.ui.Model;
-    import org.springframework.web.bind.annotation.GetMapping;
-    import org.springframework.web.bind.annotation.ModelAttribute;
-    import org.springframework.web.bind.annotation.PostMapping;
+    import org.springframework.web.bind.annotation.*;
     import org.springframework.data.domain.Pageable;
-    import org.springframework.web.bind.annotation.RequestParam;
 
     import java.io.IOException;
     import java.math.BigDecimal;
@@ -48,6 +45,26 @@
         ){
             administrateService.saveCurrency(currencyName,currencyRate);
 
+            return "redirect:/administrate/list";
+        }
+        @GetMapping("/administrate/updatefxrate/{id}")
+        public String updateFxRateMvc(@PathVariable Long id, Model model){
+            model.addAttribute("fxRate", administrateService.getFxRateById(id));
+            return "administrate/updatefxrate";
+        }
+
+        @PostMapping("/administrate/updatefxrate/{id}")
+        public String updateFxRate(@PathVariable Long id,
+                                   @ModelAttribute ("fxRate") FxRatesDTO fxRatesDTO){
+            FxRatesDTO existingFxRate = administrateService.getFxRateById(id);
+            existingFxRate.setAmtTo(fxRatesDTO.getAmtTo());
+            administrateService.updateFxRate(existingFxRate);
+            return "redirect:/administrate/list";
+        }
+        @GetMapping("/administrate/{id}")
+        public String deleteFxRate(@PathVariable Long id,
+                                   @ModelAttribute ("fxRate") FxRatesDTO fxRatesDTO){
+            administrateService.deleteFxRateById(id);
             return "redirect:/administrate/list";
         }
     }

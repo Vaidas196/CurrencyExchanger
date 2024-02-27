@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{fragments/layout :: head(#{converter.title})}"></head>
+<header th:replace="~{fragments/layout :: header}"></header>
+<body style="background: slategray">
+<div class="container">
+</div>
+
+
+
+<div class="container" style="background: antiquewhite; padding-top: 20px">
+  <form th:action="@{/administrate/updatefxrate/{id} (id=${fxRate.id})}" method="post" th:object="${fxRate}">
+    <h3 th:text="Update + ' ' +  *{ccyTo}"></h3>
+    <div class="mb-3">
+      <label for="exchangeRate" class="form-label" th:text="#{exchange.rate}"></label>
+      <input type="text" class="form-control" id="exchangeRate" name="exchangeRate"
+             th:field="*{amtTo}" >
+    </div>
+    <button type="submit" class="btn btn-primary" id="saveFxRateButton" th:text="#{save.fx.rate}"></button>
+  </form>
+</div>
+</body>
+<div class="container text-center">
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</div>
+</html>

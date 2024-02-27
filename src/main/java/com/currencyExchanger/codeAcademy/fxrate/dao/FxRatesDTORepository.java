@@ -17,4 +17,7 @@ public interface FxRatesDTORepository extends JpaRepository<FxRatesDTO,Long> {
     List<FxRatesDTO> findByCcyToOrderByDtDesc(String ccyFrom);
 
     Page<FxRatesDTO> findAll(Pageable pageable);
+
+    FxRatesDTO findById(long id);
+
 }
